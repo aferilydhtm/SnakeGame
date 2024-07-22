@@ -22,39 +22,25 @@ const SnakeGame = () => {
   const [food, setFood] = useState(() => generateFood([{ x: 5, y: 5 }])); // Initial snake state
   const [direction, setDirection] = useState("RIGHT");
   const [gameOver, setGameOver] = useState(false);
-   const [velocity, setVelocity] = useState({ x: 0, y: 0 }); // Add velocity state
 
   useEffect(() => {
     if (gameOver) return;
-
     const handleKeyPress = (e) => {
       switch (e.key) {
         case "ArrowUp":
           setDirection("UP");
-
-          setVelocity({ x: 0, y: -1 });
-
           break;
 
         case "ArrowDown":
           setDirection("DOWN");
-
-          setVelocity({ x: 0, y: 1 });
-
           break;
 
         case "ArrowLeft":
           setDirection("LEFT");
-
-          setVelocity({ x: -1, y: 0 });
-
           break;
 
         case "ArrowRight":
           setDirection("RIGHT");
-
-          setVelocity({ x: 1, y: 0 });
-
           break;
 
         default:
@@ -69,22 +55,42 @@ const SnakeGame = () => {
 
   useEffect(() => {
     if (gameOver) return;
-
-    const animationFrame = requestAnimationFrame(() => {
+    const intervalId = setInterval(() => {
       moveSnake();
-    });
+    }, 200);
 
-    return () => cancelAnimationFrame(animationFrame);
-  }, [snake, direction, gameOver, velocity]);
+    return () => clearInterval(intervalId);
+  }, [snake, direction, gameOver]);
 
   const moveSnake = () => {
     const newSnake = [...snake];
 
     const head = { ...newSnake[0] };
 
-    head.x += velocity.x;
+    switch (direction) {
+      case "UP":
+        head.y -= 1;
 
-    head.y += velocity.y;
+        break;
+
+      case "DOWN":
+        head.y += 1;
+
+        break;
+
+      case "LEFT":
+        head.x -= 1;
+
+        break;
+
+      case "RIGHT":
+        head.x += 1;
+
+        break;
+
+      default:
+        break;
+    }
 
     newSnake.unshift(head);
 
@@ -152,7 +158,7 @@ const SnakeGame = () => {
         </button>
         <div class="flex justify-center mt-3 mb-3">
           <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 mr-3 px-3" onClick={() => setDirection("LEFT")}>
-            <i class="fa-solid fa-arrow-left"></i> Left
+          <i class="fa-solid fa-arrow-left"></i> Left
           </button>
           <br />
           <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700" onClick={() => setDirection("RIGHT")}>
