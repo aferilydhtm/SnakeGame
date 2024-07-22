@@ -153,19 +153,19 @@ const SnakeGame = () => {
       </div>
       {gameOver && <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-70 text-white text-xl font-bold">Game Over</div>}
       <div className="mt-4 items-center text-center">
-        <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 px-4 text-lg" onClick={() => setDirection("UP")}>
+        <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 px-4 text-2xl" onClick={() => setDirection("UP")}>
           Up <i class="fa-solid fa-arrow-up"></i>
         </button>
-        <div class="flex justify-center mt-5 mb-5">
-          <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 mr-14 px-3 text-lg" onClick={() => setDirection("LEFT")}>
+        <div class="flex justify-center mt-8 mb-8">
+          <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 mr-14 px-3 text-2xl" onClick={() => setDirection("LEFT")}>
           <i class="fa-solid fa-arrow-left"></i> Left
           </button>
           <br />
-          <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 text-lg" onClick={() => setDirection("RIGHT")}>
+          <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 text-2xl" onClick={() => setDirection("RIGHT")}>
             Right <i class="fa-solid fa-arrow-right"></i>
           </button>
         </div>
-        <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 text-lg" onClick={() => setDirection("DOWN")}>
+        <button className="bg-blue-500 text-white p-2 rounded hover:bg-blue-700 text-2xl" onClick={() => setDirection("DOWN")}>
           Down <i class="fa-solid fa-arrow-down"></i>
         </button>
       </div>
